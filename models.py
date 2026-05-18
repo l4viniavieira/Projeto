@@ -1,0 +1,97 @@
+from django.db import models
+
+class Pessoa(models.Model):
+    nome = models.CharField(max_length=100, verbose_name="Nome")
+    cpf = models.CharField(max_length=100, verbose_name="CPF")
+    email = models.CharField(max_length=100, verbose_name="Email")
+    datanasc = models.CharField(max_length=100, verbose_name="Data de nascimento")
+    nivel = models.CharField(max_length=100, verbose_name="Nível de acesso")
+    localizacao = models.ForeignKey(Localizacao, on_delete=models.CASCADE, verbose_name="Localização")
+    
+    def __str__(self):
+        return f"{self.nome}, {self.uf}"
+    
+    class Meta:
+        verbose_name = "Pessoa"
+        verbose_name_plural = "Pessoas"
+
+class LogAtualizacao(models.Model):
+    texto = models.CharField(max_length=100, verbose_name="Texto")
+    texto = models.CharField(max_length=100, verbose_name="Texto")
+    texto = models.CharField(max_length=100, verbose_name="Texto")
+    cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE, verbose_name="Cidade do autor")
+ 
+    def __str__(self):
+        return self.nome
+ 
+    class Meta:
+        verbose_name = "Autor"
+        verbose_name_plural = "Autores"
+
+
+class Comentario(models.Model):
+    texto = models.CharField(max_length=100, verbose_name="Texto")
+    data = models.CharField(max_length=100, verbose_name="Data")
+    hora = models.CharField(max_length=100, verbose_name="Hora")
+    pessoa = models.ForeignKey(Cidade, on_delete=models.CASCADE, verbose_name="Cidade do autor")
+    evento = models.ForeignKey(Cidade, on_delete=models.CASCADE, verbose_name="Cidade do autor")
+    def __str__(self):
+        return self.nome
+ 
+    class Meta:
+        verbose_name = "Autor"
+        verbose_name_plural = "Autores"
+
+
+class Editora(models.Model):
+    nome = models.CharField(max_length=100, verbose_name="Nome da editora")
+    site = models.CharField(max_length=100, verbose_name="Site da editora")
+    cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE, verbose_name="Cidade da editora")
+    
+    def __str__(self):
+        return self.nome
+    
+    class Meta:
+        verbose_name = "Editora"
+        verbose_name_plural = "Editoras"
+
+    
+class Leitor(models.Model):
+    nome = models.CharField(max_length=100, verbose_name="Nome do leitor")
+    email = models.CharField(max_length=100, verbose_name="Email do leitor")
+    cpf = models.CharField(max_length=11, unique=True, verbose_name="CPF do leitor")
+    
+    def __str__(self):
+        return self.nome
+    
+    class Meta:
+        verbose_name = "Leitor"
+        verbose_name_plural = "Leitores"
+    
+
+class Genero(models.Model):
+    nome = models.CharField(max_length=100, verbose_name="Gênero")
+    
+    def __str__(self):
+        return self.nome
+    
+    class Meta:
+        verbose_name = "Gênero"
+        verbose_name_plural = "Gêneros"
+
+
+class Livro(models.Model):
+    nome = models.CharField(max_length=100, verbose_name="Nome do livro")
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE, verbose_name="Autor do livro")
+    editora = models.ForeignKey(Editora, on_delete=models.CASCADE, verbose_name="Editora do livro")
+    genero = models.ForeignKey(Genero, on_delete=models.CASCADE, verbose_name="Gênero do livro")
+    preco = models.IntegerField(verbose_name="Preço do livro")
+    data_plub = models.DateField(verbose_name="Data de publicação do livro")
+    status = models.BooleanField(verbose_name="Status do livro")
+
+    def __str__(self):
+        return f'{self.nome}, {self.autor}'
+    
+    class Meta:
+        verbose_name = "Livro"
+        erbose_name_plural = "Livros"
