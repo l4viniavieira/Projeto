@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-white tracking-tight">Tabela de Usuários (Pessoas)</h1>
+    <p class="text-sm text-gray-400 mt-1">Gerenciamento de credenciais, dados cadastrais e permissões administrativas dos analistas do sistema.</p>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg border border-gray-800">
+    <table class="w-full text-sm text-left text-gray-400">
+        <thead class="text-xs uppercase bg-gray-800 text-gray-400 border-b border-gray-700">
+            <tr>
+                <th scope="col" class="px-6 py-3">Nome</th>
+                <th scope="col" class="px-6 py-3">CPF</th>
+                <th scope="col" class="px-6 py-3">E-mail</th>
+                <th scope="col" class="px-6 py-3">Data Nasc.</th>
+                <th scope="col" class="px-6 py-3">Nível de Acesso</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pessoa in pessoas %}
+            <tr class="bg-gray-900 border-b border-gray-800 hover:bg-gray-850 transition">
+                <td class="px-6 py-4 font-semibold text-white whitespace-nowrap">
+                    {{ pessoa.nome }}
+                </td>
+                <td class="px-6 py-4 font-mono text-xs text-gray-300 whitespace-nowrap">
+                    {{ pessoa.cpf }}
+                </td>
+                <td class="px-6 py-4 font-mono text-xs text-blue-400 whitespace-nowrap">
+                    {{ pessoa.email }}
+                </td>
+                <td class="px-6 py-4 font-mono text-xs text-gray-400 whitespace-nowrap">
+                    {{ pessoa.datanasc }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="bg-gray-800 text-gray-300 text-xs font-medium px-2.5 py-1 rounded border border-gray-700 font-medium">
+                        {{ pessoa.nivel }}
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock conteudo %}

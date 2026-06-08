@@ -18,7 +18,7 @@ class LogAtualizacaoView(View):
 
 class ComentarioView(View):
     def get(self, request, *args, **kwargs):
-        comentarios = Comentario.objects.all()
+        comentarios = Comentario.objects.select_related('eventogeopolitico')
         return render(request, 'comentario.html', {'comentarios': comentarios})
 
 class LocalizacaoView(View):
@@ -38,7 +38,7 @@ class AreaSaberView(View):
 
 class EventoGeopoliticoView(View):
     def get(self, request, *args, **kwargs):
-        eventos = EventoGeopolitico.objects.all()
+        eventos = EventoGeopolitico.objects.select_related('areasaber')
         return render(request, 'eventogeopolitico.html', {'eventos': eventos})
 
 class FonteInformacaoView(View):
@@ -58,7 +58,7 @@ class IndicadorInflacaoView(View):
 
 class FluxoMigratorioView(View):
     def get(self, request, *args, **kwargs):
-        fluxos = FluxoMigratorio.objects.all()
+        fluxos = FluxoMigratorio.objects.select_related('locorigem', 'locdestino')
         return render(request, 'fluxomigratorio.html', {'fluxos': fluxos})
 
 class RotaComercialView(View):

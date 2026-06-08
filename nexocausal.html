@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-white tracking-tight">Nexo Causal (Inteligência Educacional e Didática)</h1>
+    <p class="text-sm text-gray-400 mt-1">Modelagem de cadeias de causa e efeito relacionando dinâmicas globais a desdobramentos locais.</p>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg border border-gray-800">
+    <table class="w-full text-sm text-left text-gray-400">
+        <thead class="text-xs uppercase bg-gray-800 text-gray-400 border-b border-gray-700">
+            <tr>
+                <th scope="col" class="px-6 py-3">Explicação Didática</th>
+                <th scope="col" class="px-6 py-3">Estrutura de Análise</th>
+                <th scope="col" class="px-6 py-3">Do Evento...</th>
+                <th scope="col" class="px-6 py-3">...Ao Impacto Gerado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nexocausal in nexoscausais %}
+            <tr class="bg-gray-900 border-b border-gray-800 hover:bg-gray-850 transition">
+                <td class="px-6 py-4 text-gray-300 max-w-xs whitespace-normal">
+                    {{ nexocausal.explicacao }}
+                </td>
+                <td class="px-6 py-4 text-gray-400 font-mono text-xs max-w-xs whitespace-normal">
+                    {{ nexocausal.estrutura }}
+                </td>
+                <td class="px-6 py-4 font-semibold text-white max-w-xs whitespace-normal">
+                    {{ nexocausal.eventogeopolitico.titulo }}
+                </td>
+                <td class="px-6 py-4 text-gray-300 max-w-xs whitespace-normal">
+                    {{ nexocausal.impactoeconomico.descricao }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock conteudo %}

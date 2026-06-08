@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-white tracking-tight">Órgãos Internacionais e Entidades Emissoras</h1>
+    <p class="text-sm text-gray-400 mt-1">Mapeamento de blocos multilaterais, agências reguladoras e institutos de governança transnacional.</p>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg border border-gray-800">
+    <table class="w-full text-sm text-left text-gray-400">
+        <thead class="text-xs uppercase bg-gray-800 text-gray-400 border-b border-gray-700">
+            <tr>
+                <th scope="col" class="px-6 py-3">Nome</th>
+                <th scope="col" class="px-6 py-3">Site</th>
+                <th scope="col" class="px-6 py-3">Tipo (Ex: ONG, Sanções)</th>
+                <th scope="col" class="px-6 py-3">Sede (Localização)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for instituicao in instituicoes %}
+            <tr class="bg-gray-900 border-b border-gray-800 hover:bg-gray-850 transition">
+                <td class="px-6 py-4 font-semibold text-white whitespace-nowrap">
+                    {{ instituicao.nome }}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="{{ instituicao.site }}" target="_blank" class="text-blue-400 hover:underline font-mono text-xs">
+                        {{ instituicao.site }}
+                    </a>
+                </td>
+                <td class="px-6 py-4 text-gray-300 whitespace-nowrap">
+                    {{ instituicao.tipo }}
+                </td>
+                <td class="px-6 py-4 font-medium text-gray-400 whitespace-nowrap">
+                    {{ instituicao.localizacao.nome }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock conteudo %}

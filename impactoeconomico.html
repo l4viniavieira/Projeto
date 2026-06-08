@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-white tracking-tight">Impactos Socioeconômicos na Cadeia de Suprimentos</h1>
+    <p class="text-sm text-gray-400 mt-1">Monitoramento de desdobramentos de mercado, volatilidade de ativos e estimativas temporais.</p>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg border border-gray-800">
+    <table class="w-full text-sm text-left text-gray-400">
+        <thead class="text-xs uppercase bg-gray-800 text-gray-400 border-b border-gray-700">
+            <tr>
+                <th scope="col" class="px-6 py-3">Descrição do Impacto</th>
+                <th scope="col" class="px-6 py-3">Prazo Estimado</th>
+                <th scope="col" class="px-6 py-3">Evento Geopolítico Originário</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for impactoeconomico in impactos %}
+            <tr class="bg-gray-900 border-b border-gray-800 hover:bg-gray-850 transition">
+                <td class="px-6 py-4 text-gray-300 max-w-md whitespace-normal">
+                    {{ impactoeconomico.descricao }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="bg-blue-900/40 text-blue-400 text-xs font-medium px-2.5 py-1 rounded border border-blue-800/60 font-mono">
+                        {{ impactoeconomico.prazo }}
+                    </span>
+                </td>
+                <td class="px-6 py-4 font-semibold text-white">
+                    {{ impactoeconomico.eventogeopolitico.titulo }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock conteudo %}

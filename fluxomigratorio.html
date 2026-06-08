@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div class="mb-6">
+    <h1 class="text-2xl font-bold text-white tracking-tight">Dados de Deslocamentos em Massa e Refúgios</h1>
+    <p class="text-sm text-gray-400 mt-1">Análise demográfica, origens, destinos e vetores causais de movimentos migratórios globais.</p>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg border border-gray-800">
+    <table class="w-full text-sm text-left text-gray-400">
+        <thead class="text-xs uppercase bg-gray-800 text-gray-400 border-b border-gray-700">
+            <tr>
+                <th scope="col" class="px-6 py-3">Quantidade de Pessoas</th>
+                <th scope="col" class="px-6 py-3">Justificativa / Causa</th>
+                <th scope="col" class="px-6 py-3">Origem</th>
+                <th scope="col" class="px-6 py-3">Destino</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fluxo in fluxos %}
+            <tr class="bg-gray-900 border-b border-gray-800 hover:bg-gray-850 transition">
+                <td class="px-6 py-4 font-mono text-sm text-green-400 font-medium whitespace-nowrap">
+                    {{ fluxo.quantidade }}
+                </td>
+                <td class="px-6 py-4 text-gray-300 max-w-xs whitespace-normal">
+                    {{ fluxo.justificativa }}
+                </td>
+                <td class="px-6 py-4 font-semibold text-white whitespace-nowrap">
+                    {{ fluxo.locorigem.nome }}
+                </td>
+                <td class="px-6 py-4 text-gray-300 whitespace-nowrap">
+                    {{ fluxo.locdestino.nome }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock conteudo %}
