@@ -18,22 +18,17 @@ class IndexView(LoginRequiredMixin, View):
     de nexos causais globais apenas para usuários autenticados.
     """
     def get(self, request, *args, **kwargs):
-        # Buscamos apenas os eventos geopolíticos trazendo a área do saber integrada
         eventos = EventoGeopolitico.objects.select_related('areasaber').order_by('-id')
         
         painel_conexoes = []
         
         for evento in eventos:
-            # Filtra os impactos econômicos amarrados a este evento específico
             impactos = ImpactoEconomico.objects.filter(eventogeopolitico=evento)
             
-            # Filtra a explicação didática do nexo causal e traz o impacto econômico acoplado
             nexos = NexoCausal.objects.filter(eventogeopolitico=evento).select_related('impactoeconomico')
             
-            # Busca os comentários dos estudantes associados a este evento específico
             comentarios = Comentario.objects.filter(eventogeopolitico=evento).select_related('pessoa')
             
-            # Colocamos apenas o que pertence legitimamente a este evento no dicionário
             painel_conexoes.append({
                 'evento': evento,
                 'impactos': impactos,
